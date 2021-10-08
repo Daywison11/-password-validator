@@ -1,0 +1,31 @@
+#form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    text-align: center;
+    background-color:rgba(0, 122, 192, 0.219);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+input{
+    display: block;
+    margin: 15px auto ;
+    border: none;
+    border-bottom: 1px solid blue;
+    background-color:transparent;
+    
+}
+#submit{
+
+    display: block;
+    color:black;
+    border: none;
+    background-color: lightseagreen;
+    height: 30px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bolder;
+}
