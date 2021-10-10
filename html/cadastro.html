@@ -8,12 +8,17 @@
     <title>Cadastro de novo usuario</title>
 </head>
 <body>
-    <form action="validar-logir" id="form">
+    <form id="form">
         <label for="email">Cadastro</label>
         <input type="email" name="e-mail" id="e-mail" required placeholder="Email">
-        <input type="password" name="password" id="password" required placeholder="Senha">
-        <input type="password" name="password" id="password" required placeholder="Confirme a Senha">
+        <input type="password" name="password" id="password" required placeholder="Senha" onkeyup="permision()">
+        <input type="password" name="password1" id="password1" required placeholder="Confirme a Senha" onkeyup="permision()">
+        <p>
+            A senha deve conter:<br><br>uma letra maiuscula<br>uma letra minuscula <br>deve conter numeros <br>um caractere " =@.," <br>
+            no minimo 8 caracter
+        </p>
         <input type="submit" value="cadastrar-me" id="submit">
     </form>
+    <script src="/main.js"></script>
 </body>
 </html>

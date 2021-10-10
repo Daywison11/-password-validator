@@ -8,12 +8,12 @@
     <title>Formulario De Login</title>
 </head>
 <body>
-    <form action="validar-login" id="form">
+    <form id="form" >
         <label for="email">Login</label>
         <input type="email" name="e-mail" id="e-mail" required placeholder="Email" >
-        <input type="password" name="password" id="password" required placeholder="Senha">
+        <input type="password" name="password" id="password" required placeholder="Senha" onkeyup="permision()">
         <input type="submit"  value="login" id="submit" >
-        <a href="cadastro.html" id="ancora">cadastrar-me</a>
+        <a href="cadastro.html" id="ancora" >cadastrar-me</a>
     </form>
 </body>
 </html>
