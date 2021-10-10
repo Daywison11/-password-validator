@@ -29,3 +29,6 @@ input{
     border-radius: 10px;
     font-weight: bolder;
 }
+#resposta{
+    color:red;
+}
