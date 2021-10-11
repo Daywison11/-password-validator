@@ -121,20 +121,26 @@ function haveCaracter(){
 //verifica se a senha um e dois estão iguais
 function validesenha2(){
     let msg = document.getElementById('resposta')
+    let conter = document.getElementById('deveConter')
     let senha1 = document.getElementById('password').value
     let senha2 = document.getElementById('password2').value
     if (senha2 != senha1){
-        msg.innerText = 'verifique a confirmação de senha'
+        msg.innerText = 'As senhas não estao iguais'
         msg.style.color = 'red'
         return false
     }
     else if (senha1 === senha2){
         msg.innerText = ''
+        conter.innerText = ''
         return true
     }
     
 }
 
+//verifica se todos as validaçoes estao retornando o true ou false 
+//se tordas retornarem o que foi pedido
+//a função retorna true
+//se nao retorna false
 function senhaOk(){
     let espace = removespaces()
     let size = countingsize()
