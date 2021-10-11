@@ -8,17 +8,17 @@
     <title>Cadastro de novo usuario</title>
 </head>
 <body>
-    <form id="form">
+    <form id="form" >
         <label for="email">Cadastro</label>
         <input type="email" name="e-mail" id="e-mail" required placeholder="Email">
         <input type="password" name="password" id="password" required placeholder="Senha" onkeyup="permision()">
-        <input type="password" name="password1" id="password1" required placeholder="Confirme a Senha" onkeyup="permision()">
+        <input type="password" name="password2" id="password2" required placeholder="Confirme a Senha" onkeyup="permision()">
         <p id="resposta"></p>
         <p>A senha deve conter:</p>
-        <p>uma letra maiuscula</p>
-        <p>uma letra minuscula</p>
-        <p>deve conter numeros</p>
-        <p>um caractere " =@.,"</p>
+        <p id="space"></p>
+        <p id="upper">uma letra maiuscula</p>
+        <p id="number">deve conter numeros</p>
+        <p id="caracter">um caractere " =@.,*/+</p>
         <p id="size">no minimo 8 caracter</p>
         
         <input type="submit" value="cadastrar-me" id="submit">
