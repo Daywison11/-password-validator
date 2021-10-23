@@ -1,0 +1,44 @@
+<div class="header">
+    <h1>pagina home</h1>
+    <p>Logado</p>
+    <a href="/login">sair</a>
+</div>
+<div class="body">
+    {{#each user}}
+    <div class="bloco">
+        <p>usuario{{dataValues.user}}</p>
+        <p>senha {{dataValue.senha}}</p>
+    </div>
+    {{/each}}
+</div>
+
+
+<style>
+    *{
+        margin:0;
+    }
+    .header{
+        display: flex;
+        align-items: center;
+        color: white;
+        justify-content: space-between;
+        background-color: lightslategrey;
+        padding: 10px;
+    }
+    .header > a {
+        text-decoration:none;
+        color:white;        
+    }
+    
+    .body{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .bloco{
+        margin: 10px;
+        height: 100px;
+        width: 150px;
+        border: 1px solid black;   
+    }
+</style>

@@ -1,0 +1,217 @@
+<body>
+    <form id="form" action="/form" method="post" >
+        <label for="email" >Cadastro</label>
+        <input type="text" name="email" id="email" required placeholder="Username">
+        <input type="password" name="password" id="password" required placeholder="Senha" onkeyup="permision()">
+        <input type="password" name="password2" id="password2" required placeholder="Confirme a Senha" onkeyup="permision()">
+        <p id="resposta"></p>
+        <p id="deveConter">A senha deve conter:</p>
+        <p id="space"></p>
+        <p id="upper">uma letra maiuscula</p>
+        <p id="number">deve conter numeros</p>
+        <p id="caracter">um caractere " =@.,*/+</p>
+        <p id="size">no minimo 8 caracter</p>
+        
+        <input type="submit" value="cadastrar-me" id="submit">
+    </form>
+    <script src="/main.js"></script>
+</body>
+</html>
+
+<style>
+    #form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    text-align: center;
+    background-color:rgba(0, 122, 192, 0.219);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+input{
+    display: block;
+    margin: 15px auto ;
+    border: none;
+    border-bottom: 1px solid blue;
+    background-color:transparent;
+    
+}
+#submit{
+
+    display: block;
+    color:black;
+    border: none;
+    background-color: lightseagreen;
+    height: 30px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+#resposta{
+    color:red;
+}
+</style>
+<script>
+    function permision(){
+    senhaOk()
+}
+function arrayadd(){
+    //pegando os itens da senha e colocando em um array
+    let senha1 = document.querySelector('#password').value
+    let array = Array.from(senha1)
+    return array
+}
+
+//verifica se todos os espaços foram removidos da senha
+//e retorna com false se nao tiver espaço 
+//ou true caso ainda tenha espaços
+function removespaces(){
+
+    //emitindo mensagem caso tenha espaço na senha
+    function spaceinsenha(){
+        let array = arrayadd()
+        let espaços = array.includes(' ')
+        if( espaços ==true ){
+            let res = document.querySelector("#space")
+            res.innerHTML = 'A senha não pode conter espaços'
+            res.style.color = 'red'
+
+            //removendo os  espaços da senha
+            var buscar = " ";
+            var indice = array.indexOf(buscar);
+            while(indice >= 0){
+                array.splice(indice, 1);
+                indice = array.indexOf(buscar);
+            }
+            return true
+        }
+        else{
+            let res = document.querySelector("#space")
+            res.innerHTML = ''
+            return false
+        } 
+    }
+    //verifica se os espaços ja foram removidos
+    if (spaceinsenha() == true){
+
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+//verifica se a senha tem 8 caracteres
+function countingsize(){
+    let array = arrayadd()
+    let size = array.length
+    let msg = document.getElementById('size')
+    if ( size <= 7 ){
+        msg.innerText = 'no minimo 8 caracter'
+        msg.style.color = 'red'
+        return false
+    }
+    else if( size > 7 ){
+        msg.innerText = ''
+        return true
+    }
+}
+
+//verificando se tem alguma letra maiuscula
+//se tiver retorna true se nao false
+function haveuppercase(){
+    let array = arrayadd()
+    var senha = array.toString()
+    var regex = /[A-Z]/
+    if(!regex.exec(senha)){
+        let msg  = document.getElementById('upper')
+        msg.innerText = 'uma letra maiuscula'
+        msg.style.color = 'red'
+        return false
+    }
+    else{
+        let msg  = document.getElementById('upper')
+        msg.innerText = ''
+        return true
+    }
+    
+}
+
+//verifica se tem ao menos um  numero na senha 
+//se tiver retorna true se nao false
+function haveNumber(){
+    let msg = document.getElementById('number')
+    let array = arrayadd()
+    var senha = array.toString()
+    var regex = /[0-9]/
+    if(!regex.exec(senha)){
+        msg.innerText = 'deve conter numeros'
+        msg.style.color = 'red'
+
+        return false
+    }
+    else{
+        msg.innerText = ''
+        return true
+    }
+}
+//verifica se tem algum caractere na senha
+//caso tenha retorna true se nao false
+function haveCaracter(){
+    let msg = document.getElementById('caracter')
+    let senha = document.getElementById('password').value
+    let regex = /[-!@#$%*()_+^&}{:;?.,]/ 
+    if(!regex.exec(senha)){
+        msg.innerText = 'um caractere " =@.,*/+'
+        msg.style.color = 'red'
+        return false
+    } 
+    else{
+        msg.innerText = ''
+        return true
+    }
+   
+}
+//verifica se a senha um e dois estão iguais
+function validesenha2(){
+    let msg = document.getElementById('resposta')
+    let conter = document.getElementById('deveConter')
+    let senha1 = document.getElementById('password').value
+    let senha2 = document.getElementById('password2').value
+    if (senha2 != senha1){
+        msg.innerText = 'As senhas não estao iguais'
+        msg.style.color = 'red'
+        return false
+    }
+    else if (senha1 === senha2){
+        msg.innerText = ''
+        conter.innerText = ''
+        return true
+    }
+    
+}
+
+//verifica se todos as validaçoes estao retornando o true ou false 
+//se tordas retornarem o que foi pedido
+//a função retorna true
+//se nao retorna false
+function senhaOk(){
+    let espace = removespaces()
+    let size = countingsize()
+    let upper = haveuppercase()
+    let number = haveNumber()
+    let caractere = haveCaracter()
+    let igual = validesenha2()
+    if(espace == false & size == true & upper == true & number == true & caractere == true & igual == true){
+        return true
+
+    }
+    else{
+        return false
+    }
+}
+
+</script>
