@@ -11,7 +11,10 @@
 
 //inportação do hendlebars
     const handlebars = require('express-handlebars')
+
 const Usuarios = require('./models/usuarios')
+const usuarios = require('./models/usuarios')
+
 
 //configurando handlebars como templet 
     app.engine('handlebars', handlebars({defaultLayout: 'main'}))
@@ -31,29 +34,45 @@ const Usuarios = require('./models/usuarios')
     })
     
     //rota de recebimento do login
-        app.post('/rec', (req,res) => {
-            var user = req.body.email
+        app.post('/rec', async (req,res) => {
+            var usuario = req.body.email
             var senha = req.body.password
             
-            if (senha === 'admin' & senha === 'admin'){
-                Usuarios.findAll().then((usuario) => {
-                    res.render('homeadm', {user : usuario})
-                    var euuser = Usuarios.findByPk('1')
-                    console.log(euuser)
-                })
-                
-                
+            //pegando a tabela ususarios do Db
+            const use = await Usuarios.findOne({
+                where:{
+                    user: usuario
+                }
+            })
+            console.log(use)
+            //verifica se o usuario existe ou nao no db
+            if (use){
+                //verificando user adm
+                    if (use.user === 'admin' && senha === use.senha){
+                    res.render('homeAdm')
+                }
+                //verificando senha          
+                    else if (usuario === use.user & senha === use.senha){
+                        res.render('./homeLog')
+                    }
+                    else{
+                        res.render('./alert/Log')
+                    }
             }
             else{
-                res.redirect('/alert')
+                res.render('./alert/NaoCas')
             }
+                
+            
         })
         
     //rota de login 
 
-        app.get('/login',(req,res) => {
+        app.get('/login',  (req,res) => {
             res.render('login')
-        } )
+            
+                
+        })
     //cadastro de usuarios
         //rota de cadatro de usuarios
             app.get('/cadastro', (req,res) => {
@@ -88,11 +107,7 @@ const Usuarios = require('./models/usuarios')
                     else if (senha != senha2){
                         res.render('./alert/CadSenha')
                     }
-                    let espaços = senha.includes(' ')
 
-                   if(espaços == true){
-                        res.render('./alert/Cad')
-                    }
                     else{
                        
                         Usuarios.create({
@@ -105,6 +120,8 @@ const Usuarios = require('./models/usuarios')
 
 
             })
+        //rota de usuarios
+            app.post('/')
 
 
 
