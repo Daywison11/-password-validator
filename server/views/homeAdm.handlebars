@@ -3,14 +3,9 @@
     <p>Logado como Adm</p>
     <a href="/">sair</a>
 </div>
-<a href="/users">Listar usuarios</a>
+
 <div class="body">
-    {{#each user}}
-    <div class="bloco">
-        <p>usuario{{dataValues.user}}</p>
-        <p>senha {{dataValue.senha}}</p>
-    </div>
-    {{/each}}
+    
 </div>
 
 
@@ -36,10 +31,5 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .bloco{
-        margin: 10px;
-        height: 100px;
-        width: 150px;
-        border: 1px solid black;   
-    }
+    
 </style>

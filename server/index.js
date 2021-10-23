@@ -44,7 +44,6 @@ const usuarios = require('./models/usuarios')
                     user: usuario
                 }
             })
-            console.log(use)
             //verifica se o usuario existe ou nao no db
             if (use){
                 //verificando user adm
