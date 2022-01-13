@@ -1,5 +1,4 @@
-validação de senha de  formulario com javaScrit 
-
-provavelmente validação de login tambem com nodeJs
-
-E validação de seção com node
+validação de senha de  formulario com javaScrit
+verifica se o ususario existe ou nao no db
+caso não e posivel cadastrar novo usuario
+e adcionar ao banco de dados
